@@ -8,31 +8,33 @@ from authentication import check_creds
 
 
 #import analysis
-
-#from datamodel import InputData
+from typing import Annotated
+from datamodel import InputData
 
 #Fastapi component
 
-app = FastAPI(dependencies=[Depends(check_creds)])
+app = FastAPI()
 
 @app.get("/secure")
 def secure_route(user: str = Depends(check_creds)):
     return {"message": "authentication successful"}
 
-#@app.get("/", response_class=FileResponse)
-#async def home(request: Request):
+@app.get("/", response_class=FileResponse)
+async def home():
     return 'static/index.html'
 
-#@app.get("/form", response_class=FileResponse)
-#async def form():
-   # return 'static/psycho.html'
+#viewpoint end function
+
+@app.get("/form", response_class=FileResponse)
+async def form():
+    return 'static/psycho.html'
 
 #json input
-#@app.post("/submit")
-#async def submit(input: InputData):
- #   with open('data/input.json', 'w') as fout:
-  #     fout.write(pdata.model_dump_json())
-   # return{"message": "Form was submitted successfully"}
+@app.post("/submit")
+async def submit(data: Annotated[InputData, Form()]):
+  with open('data/input.json', 'w') as f:
+      json.dump(data.model_dump(), f, indent=4)
+  return{"message": "Form was submitted successfully"}
 
 #@app.get("/analyze")
 #async def analyze():
