@@ -24,11 +24,59 @@
   
   <p>Welcome to your psychological profile</p>
   
-  <p>
-  <a href="/form"><button type="button">Fetch form</button></a>
-  </p>
-  
-  <p><button onclick="submit_form()">Submit form</button></p>
+  <p><button onclick="fetch_form()">Fetch form</button></p>
+<div id="form-container"></div>
+  <script>
+function fetch_form() {
+    fetch('/form')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('form-container').innerHTML = html;
+        })
+        .catch(err => console.error('Error loading form:', err));
+}
+
+function submit_form() {
+    const form = document.forms["psychoform"];
+    const formData = new FormData(form);
+    const data = {};
+
+    // Convert FormData to a JSON object
+    formData.forEach((value, key) => {
+        // Handle multiple selections (like checkboxes for pets)
+        if (data[key]) {
+            if (!Array.isArray(data[key])) data[key] = [data[key]];
+            data[key].push(value);
+        } else {
+            data[key] = value;
+        }
+    });
+
+    // Convert numeric fields to integers
+    for (let i = 1; i <= 20; i++) {
+        const q = "question" + i;
+        if (data[q]) data[q] = parseInt(data[q]);
+    }
+    if (data["birthyear"]) data["birthyear"] = parseInt(data["birthyear"]);
+
+    // Ensure pets is an array (even if only one selected)
+    if (data["pets"] && !Array.isArray(data["pets"])) data["pets"] = [data["pets"]];
+
+    fetch("/submit", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => alert(res.message))
+    .catch(err => console.error(err));
+}
+</script>
+
+
+
+
+<p><button type="button" onclick="submit_form()">Submit form</button></p>
 
   <p><button onclick="analyze()">Analyze</button></p>
 

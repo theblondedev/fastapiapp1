@@ -31,10 +31,10 @@ async def form():
 
 #json input
 @app.post("/submit")
-async def submit(data: Annotated[InputData, Form()]):
-  with open('data/input.json', 'w') as f:
-      json.dump(data.model_dump(), f, indent=4)
-  return{"message": "Form was submitted successfully"}
+async def submit(pdata: InputData):
+    with open('data/input.json', 'w') as fout:
+        fout.write(pdata.model_dump_json())
+    return {"message": "Form was submitted successfully"}
 
 #@app.get("/analyze")
 #async def analyze():
