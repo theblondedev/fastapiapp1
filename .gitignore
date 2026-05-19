@@ -1,0 +1,17 @@
+# Python cache and env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+venv/
+
+# Docker artifacts
+*.tar
+*.log
+.docker/
+
+# IDE files
+.idea/
+.DS_Store
+fastapiapp1.git/

@@ -1,0 +1,47 @@
+<!--
+    Front end or landing page for 159.352 Assignment 1
+
+    This has just some minimal features to faciliate testing the back end
+     
+    Modify in any way you see fit to make it look good - it is expected
+    you will do this.
+
+    For example, you can change the names of the functions referenced by the
+    onclick attributes
+  -->
+<!doctype html>
+<html>
+<head>
+  <title>Psychological Profiling</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- Javascript here or put in a separate .js file -->
+<script src="/static/script.js"></script>
+
+</head>
+
+<body>
+
+  <h1>Psychological Profiling</h1>
+  
+  <h2>Welcome to your psychological profile</h2>
+
+
+ <div class="button-container">
+<button class="button" onclick="fetch_form()">Step 1: Fetch form</button>
+
+
+<button class="button" onclick="analyze()">Step 2: Analyze</button>
+<button class="button" onclick="viewInput()">Step 3: View input data</button>
+<button class="button" onclick="view_profile()">Step 4: View your profile</button>
+</div>
+<pre id="profileData" class="json-container" style="display:none;"></pre>
+<pre id="inputData" class="json-container" style="display:none;"></pre>
+
+ <div id="form-container"></div>
+<button type="button" class="button" id="submitButton" onclick="submit_form()">Submit form</button>
+
+</body>
+</html> 

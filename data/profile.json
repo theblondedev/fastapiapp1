@@ -1,0 +1,24 @@
+{
+    "career": "ceo",
+    "score": 0,
+    "answers questions": {
+        "question1": 1,
+        "question10": 1,
+        "question2": 1,
+        "question8": 1
+    },
+    "movies": [
+        {
+            "Title": "Legally Blonde",
+            "Year": "2001",
+            "Genre": "Comedy, Romance",
+            "Plot": "Fashionable sorority queen Elle Woods follows her ex-boyfriend to law school, where she discovers that there is more to her than just looks."
+        },
+        {
+            "Title": "The Intern",
+            "Year": "2015",
+            "Genre": "Comedy, Drama",
+            "Plot": "Seventy-year-old widower Ben Whittaker has discovered that retirement isn't all it's cracked up to be. Seizing an opportunity to get back in the game, he becomes a senior intern at an online fashion site, founded and run by Jules ..."
+        }
+    ]
+}
